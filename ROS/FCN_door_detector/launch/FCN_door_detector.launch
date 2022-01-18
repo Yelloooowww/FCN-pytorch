@@ -1,0 +1,13 @@
+<launch>
+  <!-- <arg name="veh" default="husky2" /> -->
+  <arg name="model" default="FCNs_door_batch8_epoch51_RMSprop_lr0.0001.pkl"/>
+
+  <!-- <include file="$(find subt_rl)/launch/pcToLaser_240.launch">
+    <arg name="veh" value="$(arg veh)" />
+  </include> -->
+
+  <node name="FCN_door_detector" pkg="FCN_door_detector" type="FCN_door_detector.py" output="screen">
+    <param name="model" value="$(arg model)"/>
+  </node>
+
+</launch>

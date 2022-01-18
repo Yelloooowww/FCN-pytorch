@@ -8,6 +8,9 @@
 ## Training
 `python3 train.py`
 
+## ROS
+Here is a [ROS package](ROS/FCN_door_detector)
+![](image/ROS.png)
 
 # Fully Convolutional Networks
 [Tutorial](https://drive.google.com/drive/u/1/folders/1P6asV3aCKYl8luQsDa3Y2gQXgmr9ViNu)
