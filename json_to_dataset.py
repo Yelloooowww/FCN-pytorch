@@ -54,7 +54,7 @@ def main():
                     imageData = f.read()
                     imageData = base64.b64encode(imageData).decode('utf-8')
             img = utils.img_b64_to_arr(imageData)
-            label_name_to_value = {'_background_': 0}
+            label_name_to_value = {'_background_': 0, 'door':1, 'ball':2}
             for shape in data['shapes']:
                 label_name = shape['label']
                 if label_name in label_name_to_value:

@@ -147,7 +147,7 @@ w_decay    = 1e-5
 step_size  = 50
 gamma      = 0.5
 model_use  = "door" # "subt_model"
-n_class = 2
+n_class = 3
 
 
 # get data
@@ -223,7 +223,7 @@ class product_dataset(Dataset):
         label = cv2.imread(os.path.join(self.label_dir, self.label_list[idx]), cv2.IMREAD_GRAYSCALE)  
 
         label[label == 38] = 1 # door
-        label[label == 75] = 1 # ball
+        label[label == 75] = 2 # ball
 
         img = cv2.resize(img, (640, 320), interpolation=cv2.INTER_CUBIC)
         label = cv2.resize(label, (640, 320), interpolation=cv2.INTER_CUBIC)
