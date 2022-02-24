@@ -152,7 +152,7 @@ n_class = 2
 
 # get data
 FullPath = os.getcwd()
-data_dir  = os.path.join(FullPath + "/data/door")
+data_dir  = os.path.join(FullPath + "/dataset")
 if not os.path.exists(data_dir):
     print("Data not found!")
 
@@ -200,14 +200,14 @@ class product_dataset(Dataset):
 
     def __init__(self, root, phase, n_class=n_class, flip_rate=0.):
         data_dir = os.path.join(root, phase)
-        self.rgb_list = os.listdir(os.path.join(data_dir, 'images'))
+        self.rgb_list = os.listdir(os.path.join(data_dir, 'img'))
         _list = self.rgb_list
         self.label_list = []
         for i in range(len(self.rgb_list)):
             self.label_list.append(_list[i].split(".")[0] + ".png")
 
-        self.rgb_dir = os.path.join(data_dir, 'images')
-        self.label_dir = os.path.join(data_dir, 'masks')
+        self.rgb_dir = os.path.join(data_dir, 'img')
+        self.label_dir = os.path.join(data_dir, 'mask')
         self.means     = means
         self.n_class   = n_class
         self.flip_rate = flip_rate
@@ -220,9 +220,10 @@ class product_dataset(Dataset):
     def __getitem__(self, idx):
         idx = idx % len(self.rgb_list)
         img = cv2.imread(os.path.join(self.rgb_dir, self.rgb_list[idx]),cv2.IMREAD_UNCHANGED)
-        label = cv2.imread(os.path.join(self.label_dir, self.label_list[idx]), cv2.IMREAD_GRAYSCALE)
+        label = cv2.imread(os.path.join(self.label_dir, self.label_list[idx]), cv2.IMREAD_GRAYSCALE)  
 
         label[label == 38] = 1 # door
+        label[label == 75] = 1 # ball
 
         img = cv2.resize(img, (640, 320), interpolation=cv2.INTER_CUBIC)
         label = cv2.resize(label, (640, 320), interpolation=cv2.INTER_CUBIC)

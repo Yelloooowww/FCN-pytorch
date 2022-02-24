@@ -1,3 +1,9 @@
+# Transfer labelme json format to dataset
+This python file can transfer batch json format to dataset, including it image, mask and label information.
+```
+python3 json_to_dataset.py [json data path] 
+```
+
 # Vehicular Vision System Final report - Door Detector
 ![](image/FCN.png)
 
