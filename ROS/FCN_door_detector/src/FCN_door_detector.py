@@ -145,7 +145,7 @@ class FCN_door_detector():
 			255.  # mean of three channels in the order of BGR
 		self.h, self.w = 320, 640
 		# self.resize_count = 0
-		self.n_class = 2
+		self.n_class = 3
 
 		self.vgg_model = VGGNet(self.cfg, requires_grad=True, remove_fc=True)
 		self.fcn_model = FCN16s(
@@ -183,6 +183,7 @@ class FCN_door_detector():
 			cv_image = self.bridge.imgmsg_to_cv2(self.rgb_data, "bgr8")
 			generate_img, predict_img, cX, cY, obj_list = self.predict(cv_image)
 			generate_img[generate_img == 1] = 255 # door
+			generate_img[generate_img == 2] = 255 # ball
 			self.rgb_pub.publish(self.bridge.cv2_to_imgmsg(predict_img, "bgr8"))
 			self.mask_pub.publish(self.bridge.cv2_to_imgmsg(generate_img, "8UC1"))
 			self.rgb_data = None
